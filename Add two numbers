@@ -1,0 +1,55 @@
+var addTwoNumbers = function(l1, l2) {
+    // problem in leetCode : https://leetcode.com/problems/add-two-numbers/
+    
+    if(l1.length == l2.length)
+    {
+        console.log("activated?")
+        console.log(l1)
+    console.log(l2)
+    let result = [];
+        for (let i =0; i < l1.length; i++){result.push(0)};
+    console.log(result)
+         
+        for (let i = 0; i < l1.length; i++){
+            
+            if(l1[i]+l2[i]+result[i]>9)
+                {
+                    
+                    if(result[i+1]+1)
+                        {
+                            result[i+1]+=1;
+                            
+                        }
+                    else
+                        {
+                            result.push(1);
+                        }
+                    result[i]= (result[i]+l1[i]+l2[i])%10;
+                }
+            else
+                {
+                   result[i]+=(l1[i]+l2[i]);
+                   
+                }
+        
+            console.log(result); // gives correct solution
+        }
+        return result;      // gives "undefined"
+    }
+    else
+    {
+      if (l2.length>l1.length)
+      {
+          let l3=l2.slice(-l2.length+l1.length).fill(0);    
+          l1=l1.concat(l3);
+          addTwoNumbers(l1,l2);
+      }
+      if (l2.length<l1.length)
+      {
+          let l3 = l1.slice(-l1.length+l2.length).fill(0);
+          l2=l2.concat(l3);
+          addTwoNumbers(l1,l2);
+      }
+        
+    }
+};
